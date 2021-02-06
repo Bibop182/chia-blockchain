@@ -54,7 +54,8 @@ class TestCostCalculation:
         error, npc_list, cost = get_name_puzzle_conditions(program, False)
         coin_name = npc_list[0].coin_name
         error, puzzle, solution = get_puzzle_and_solution_for_coin(program, coin_name)
-
+        # What is being tested here ?
+        assert error is None
         # Create condition + agg_sig_condition + length + cpu_cost
         assert clvm_cost == 200 * ratio + 20 * ratio + len(bytes(program)) * ratio + cost
 
@@ -101,6 +102,7 @@ class TestCostCalculation:
 
         coin_name = npc_list[0].coin_name
         error, puzzle, solution = get_puzzle_and_solution_for_coin(program, coin_name)
+        assert error is None
 
     @pytest.mark.asyncio
     async def test_tx_generator_speed(self):
