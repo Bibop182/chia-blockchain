@@ -155,6 +155,8 @@ class SerializedProgram:
         return self._buf == other._buf
 
     def __ne__(self, other) -> bool:
+        if not isinstance(other, SerializedProgram):
+            return True
         return self._buf != other._buf
 
     def get_tree_hash(self, *args: List[bytes32]) -> bytes32:
