@@ -434,7 +434,7 @@ class ChiaServer:
         if is_localhost(connection.peer_host) and ban_time != 0:
             self.log.warning(f"Trying to ban localhost for {ban_time}, but will not ban")
             ban_time = 0
-        self.log.info(f"Connection closed: {connection.peer_host}, node id: {connection.peer_node_id}")
+        self.log.debug(f"Connection closed: {connection.peer_host}, node id: {connection.peer_node_id}")
         if ban_time > 0:
             ban_until: float = time.time() + ban_time
             self.log.warning(f"Banning {connection.peer_host} for {ban_time} seconds")
@@ -484,7 +484,7 @@ class ChiaServer:
                 try:
                     if self.received_message_callback is not None:
                         await self.received_message_callback(connection)
-                    connection.log.info(
+                    connection.log.debug(
                         f"<- {ProtocolMessageTypes(full_message.type).name} from peer "
                         f"{connection.peer_node_id} {connection.peer_host}"
                     )
